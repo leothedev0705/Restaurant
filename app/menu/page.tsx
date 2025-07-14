@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { UserIcon } from '@heroicons/react/24/outline'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { StarIcon, ClockIcon, FireIcon } from '@heroicons/react/24/outline'
+import { StarIcon } from '@heroicons/react/24/outline'
 import { formatPrice } from '@/lib/utils'
 
 const menuCategories = [
@@ -234,7 +234,7 @@ export default function MenuPage() {
 
         {/* Menu Sections */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-          {menuCategories.map((category, categoryIndex) => (
+          {menuCategories.map((category) => (
             <section key={category.id} id={category.id} className="mb-20">
               {/* Category Header */}
               <div className="text-center mb-12">
@@ -271,7 +271,7 @@ export default function MenuPage() {
                               <span>Popular</span>
                             </span>
                           )}
-                          {(item as any).chefSpecial && (
+                          {'chefSpecial' in item && (item as { chefSpecial: boolean }).chefSpecial && (
                             <span className="bg-brand-primary text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
                               <UserIcon className="h-3 w-3" />
                               <span>Chef's Special</span>
@@ -300,9 +300,9 @@ export default function MenuPage() {
                         </p>
 
                         {/* Dietary & Tags */}
-                        {(item as any).dietary && (
+                        {'dietary' in item && (item as { dietary: string[] }).dietary && (
                           <div className="flex flex-wrap gap-2">
-                            {(item as any).dietary.map((diet: string, dietIndex: number) => (
+                            {(item as { dietary: string[] }).dietary.map((diet: string, dietIndex: number) => (
                               <span
                                 key={dietIndex}
                                 className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium"

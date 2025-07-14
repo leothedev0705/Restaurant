@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ContactForm } from '@/types'
 
-function validateContactForm(data: any): { valid: boolean; errors: string[] } {
+function validateContactForm(data: Partial<ContactForm>): { valid: boolean; errors: string[] } {
   const errors: string[] = []
 
   if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 2) {

@@ -29,7 +29,7 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-function validateReservation(data: any): { valid: boolean; errors: string[] } {
+function validateReservation(data: Partial<Reservation>): { valid: boolean; errors: string[] } {
   const errors: string[] = []
 
   if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 2) {
